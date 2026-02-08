@@ -4,6 +4,9 @@
      object-fit: cover;
      position: relative;
      overflow: hidden;
+      position: fixed;
+  top: 0;
+  left: 0;
     
     img{
         height: 100%;

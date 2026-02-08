@@ -1,13 +1,22 @@
 import React from 'react'
 import './icons.scss'
 
-const Icons = (props) => {
-    console.log(props);
+const Icons = ({ id, icons, label, x, y, onDragStart }) => {
+    // console.log(props);
     
   return (
-    <div className="desktopIcon">
-        <img src={props.icons} alt="" />
-        <p>{props.label}</p>
+    <div className="desktopIcon"
+     draggable
+      onDragStart={() => onDragStart(id)}
+      style={{
+        position: "absolute",
+        left: x,
+        top: y,
+        cursor: "pointer",
+        userSelect: "none"
+      }}>
+        <img src={icons} alt="" />
+        <p>{label}</p>
     </div>
   )
 }

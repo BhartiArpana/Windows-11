@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleChnage = (e) => {
+  const handleSubmit = () => {
     e.preventDefault();
-    // console.log(e.target.value);
-    setPassword("");
-    setUserName("");
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // console.log(e.target.value);
+      if (e.key === "Enter") {
+       if(userName!==''  && password!==''){
+        navigate('/home')
+       }
+       else{
+        alert('Please username and password')
+       }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+   return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  },[userName,password,navigate]);
+
   return (
     <div className="login">
       <img src="/images/lockImage.jpg" alt="" />

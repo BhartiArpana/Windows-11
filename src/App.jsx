@@ -1,8 +1,8 @@
 import { useState } from "react";
-import LockScreen from "./components/LockScreen";
+import LockScreen from "./pages/LockScreen";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Home from './components/Home'
+import Login from "./pages/Login";
+import Home from './pages/Home'
 
 function App() {
   return (
