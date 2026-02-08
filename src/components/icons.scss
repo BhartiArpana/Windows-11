@@ -1,0 +1,27 @@
+.desktopIcon{
+    height: 6rem;
+    width: 6rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    // background-color: aqua;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    border-radius: 0.3rem;
+    margin-top: 0.75rem;
+
+    img{
+        height: 70%;
+        width: 70%;
+    }
+    p{
+        font-size: 0.69rem;
+        padding-left: 0.5rem;
+    }
+}
+.desktopIcon:hover{
+    background: #52525255;
+}

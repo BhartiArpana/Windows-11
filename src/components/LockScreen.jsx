@@ -2,10 +2,30 @@ import React, { useEffect, useState } from 'react'
 import './lockScreen.scss'
 import { IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 
 const LockScreen = () => {
     
   const [time, setTime] = useState(new Date());
+  const navigate = useNavigate()
+
+  const lockScreenHandle=()=>{
+    
+
+    useEffect(()=>{
+       const unlock = ()=>{
+          navigate('/login')
+       }
+      window.addEventListener("click", unlock);
+    window.addEventListener("keydown", unlock);
+
+    return () => {
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("keydown", unlock);
+    };
+    },[navigate])
+  }
+  lockScreenHandle()
 
   useEffect(() => {
     const interval = setInterval(() => {
