@@ -8,19 +8,31 @@ import Icons from "../components/Icons";
 import RightClick from "../components/RightClick";
 
 const Home = () => {
-const [icons, setIcons] = useState([
+  const [icons, setIcons] = useState([
     { id: 1, img: "/images/chrome.png", label: "Chrome", x: 10, y: 0 },
     { id: 2, img: "/images/edge.png", label: "Edge", x: 10, y: 90 },
     { id: 3, img: "/images/folder.png", label: "About Me", x: 10, y: 180 },
-    { id: 4, img: "/images/recycleBin.png", label: "Recycle Bin", x: 10, y: 270 },
-    { id: 5, img: "/images/vsCode.png" ,label:"Vs Code", x:10, y:440},
-    { id: 6, img: "/images/calculator.png", label:"Calculator", x:10,y:360}
+    {
+      id: 4,
+      img: "/images/recycleBin.png",
+      label: "Recycle Bin",
+      x: 10,
+      y: 270,
+    },
+    { id: 5, img: "/images/vsCode.png", label: "Vs Code", x: 10, y: 440 },
+    {
+      id: 6,
+      img: "/images/calculator.png",
+      label: "Calculator",
+      x: 10,
+      y: 360,
+    },
   ]);
-  const [rightMenu, setRightMenu] = useState(false)
+  const [rightMenu, setRightMenu] = useState(false);
   const [draggedId, setDraggedId] = useState(null);
   const [menuPos, setMenuPos] = useState({ x: 0, y: 0 });
 
-   const handleDragStart = (id) => {
+  const handleDragStart = (id) => {
     setDraggedId(id);
   };
   const handleDrop = (e) => {
@@ -28,47 +40,54 @@ const [icons, setIcons] = useState([
     const x = e.clientX;
     const y = e.clientY;
 
-    setIcons(prev =>
-      prev.map(icon =>
-        icon.id === draggedId ? { ...icon, x: x - 40, y: y - 40 } : icon
-      )
+    setIcons((prev) =>
+      prev.map((icon) =>
+        icon.id === draggedId ? { ...icon, x: x - 40, y: y - 40 } : icon,
+      ),
     );
-     setDraggedId(null);
-  }; 
+    setDraggedId(null);
+  };
 
-  const showRightMenu=(e)=>{
-    e.preventDefault(); 
+  const showRightMenu = (e) => {
+    e.preventDefault();
     setMenuPos({
-    x: e.clientX,
-    y: e.clientY
-  });
-    setRightMenu(true)
-    
-  }
+      x: e.clientX,
+      y: e.clientY,
+    });
+    setRightMenu(true);
+  };
 
   return (
     <div className="home">
       <img src="/images/homeImage.jpg" alt="" />
       <div className="homeContent">
         <div className="sideElement" onContextMenu={showRightMenu}>
-           <div className="desktopIcons "> 
-          {/*onClick={() => setRightMenu(false)} */}
-              {icons.map(icon => (
-        <Icons
-          key={icon.id}
-          id={icon.id}
-          icons={icon.img}
-          label={icon.label}
-          x={icon.x}
-          y={icon.y}
-          onDragStart={handleDragStart}
-        />
-        
-      ))}
-      {rightMenu && <RightClick  style={{
-      top: menuPos.y,
-      left: menuPos.x
-    }} setRightMenu={setRightMenu} />}
+          <div
+            className="desktopIcons "
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={handleDrop}
+          >
+            {/*onClick={() => setRightMenu(false)} */}
+            {icons.map((icon) => (
+              <Icons
+                key={icon.id}
+                id={icon.id}
+                icons={icon.img}
+                label={icon.label}
+                x={icon.x}
+                y={icon.y}
+                onDragStart={handleDragStart}
+              />
+            ))}
+            {rightMenu && (
+              <RightClick
+                style={{
+                  top: menuPos.y,
+                  left: menuPos.x,
+                }}
+                setRightMenu={setRightMenu}
+              />
+            )}
           </div>
         </div>
         <div className="bottomElement">
@@ -89,7 +108,7 @@ const [icons, setIcons] = useState([
           </div>
           <div className="rightElement">
             <div className="bottomRightIcon">
-              ENG <br />  IN
+              ENG <br /> &nbsp; IN
             </div>
             <div className="bottomRightIcons">
               <div className="bottomRightIcon">
@@ -103,7 +122,7 @@ const [icons, setIcons] = useState([
               </div>
             </div>
             <div className="bottomRightIcon">
-              12:25PM <br /> 2/8/2026
+              12:25&nbsp;PM <br /> 2/8/2026
             </div>
           </div>
         </div>
